@@ -4,7 +4,7 @@ from topics.models import Topic, Comment
 
 
 
-class PostForm(forms.ModelForm):
+class TopicForm(forms.ModelForm):
 
     class Meta:
         model = Topic
