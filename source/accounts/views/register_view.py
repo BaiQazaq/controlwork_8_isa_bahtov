@@ -17,7 +17,7 @@ class RegisterView(CreateView):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('profile')
+            return redirect('index')
         
         context = {}
         context['form'] = form

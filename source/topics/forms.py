@@ -13,7 +13,7 @@ class TopicForm(forms.ModelForm):
     
 
 class SearchForm(forms.Form):
-    search = forms.CharField(max_length=100, required=False, label='Найти')
+    search = forms.CharField(max_length=100, required=False, label='')
     
     
 class CommentForm(forms.ModelForm):

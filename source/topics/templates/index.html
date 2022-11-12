@@ -3,6 +3,38 @@
 {% block title%}topics{% endblock %}
 
 {% block header %}
+    {% include 'partial/search.html' %}
+{% endblock %}
+
+{% block content %}
+<h1> Темы </h1>
+
+  {% for topic in topics %}
+  
+    <a href="{% url 'topic_detail' topic.pk %}" class="text-decoration-none">
+        <div class="wrapper d-flex justify-content-between mb-2" style="color: black; height: 40px; border-bottom: solid; cursor: pointer">
+            <p>{{ topic.description }}</p>
+            <p>{{ topic.created_at }}</p>
+            <p>{{ topic.author }}</p>
+            <p>ответов {{ topic.comments.count }}</p>
+        </div>
+    </a>
+  
+  {% endfor %}
+  {% if is_paginated %}
+    {% include 'partial/pagination.html' %}
+  {% endif%}
+{% endblock%}
+{% block link %}
+{% endblock%}
+
+
+
+{% comment %} {% extends 'base.html' %}
+
+{% block title%}topics{% endblock %}
+
+{% block header %}
     <h1>topics</h1>
 {% endblock %}
 
@@ -19,7 +51,7 @@
             <a href="{% url 'task_edit' task.pk %}">Edit task</a>
             <span>|</span>
             <a href="{% url 'delete' task.pk %}">Delete task</a>
-        {% endif %} {% endcomment %}
+        {% endif %} 
         {% for comment in comments %}
            <p>{{ comment }}</p>
         {% endfor %}
@@ -30,4 +62,4 @@
     {% endif%}
 {% endblock%}
 {% block link %}
-{% endblock%}
+{% endblock%} {% endcomment %}

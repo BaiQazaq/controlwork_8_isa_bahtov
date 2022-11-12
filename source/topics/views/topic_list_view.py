@@ -35,7 +35,7 @@ class TopicView(ListView):
         queryset = super().get_queryset().exclude(is_deleted=True)
         if self.search_value:
             users = Account.objects.all()
-            query = Q(email__icontains=self.search_value) | Q(last_name__icontains=self.search_value) | Q(first_name__icontains=self.search_value) | Q(username__icontains=self.search_value)
+            query = Q(email__icontains=self.search_value) | Q(first_name__icontains=self.search_value) | Q(first_name__icontains=self.search_value) | Q(username__icontains=self.search_value)
             users_got = users.filter(query)
             user = users_got.values('id')[0]
             id = int(user['id'])

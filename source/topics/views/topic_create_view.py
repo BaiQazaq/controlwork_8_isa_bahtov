@@ -23,9 +23,9 @@ class TopicCreate(LoginRequiredMixin, CreateView):
                 Topic.objects.create(description=description, title=title, author=author)
         else:
             form = {'text' : 'Smth went wrong, post did not create'}
-        return redirect('topic_detail')
+        return redirect('index')
     
     
     def get_success_url(self):
-        return reverse_lazy('topic_detail', kwargs={'pk': self.object.pk})
+        return reverse_lazy('index', kwargs={'pk': self.object.pk})
     
