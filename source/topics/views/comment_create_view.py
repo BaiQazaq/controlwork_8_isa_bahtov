@@ -20,6 +20,6 @@ class CommentCreateView (LoginRequiredMixin, FormView):
             Topic.objects.create(author=author, text=text, topic=topic)
         else:
             form = {'text' : 'Smth went wrong, comment did not create'}
-        return redirect('goods_page')
+        return redirect('topic_detail', pk=topic.pk)
     
     
