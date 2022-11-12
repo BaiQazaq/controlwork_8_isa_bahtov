@@ -46,12 +46,12 @@ class TopicView(ListView):
     
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(TopicView, self).get_context_data(object_list=object_list, **kwargs)
-        posts = self.get_queryset().exclude(is_deleted=True)
-        posts_id = posts.values('id')
+        topics = self.get_queryset().exclude(is_deleted=True)
+        topics_id = topics.values('id')
         comments = []
-        for i in posts_id:
+        for i in topics_id:
             id = int(i['id'])
-            comments.append(Comment.objects.filter(post_id=id))
+            comments.append(Comment.objects.filter(topic_id=id))
             kwargs['comments'] = comments
         context['form'] = self.form
         if self.search_value:

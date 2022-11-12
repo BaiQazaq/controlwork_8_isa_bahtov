@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Create topic
+{% endblock %}
+{% block header %}
+<h1>New topic</h1>
+{% endblock %}
+{% block content %}
+    <form action="{% url 'topic_creation' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form">
+            {% include 'partial/create_form.html' with button_text='Create'%}
+        </div>
+    </form>
+{% endblock %}
+{% block link %}
+{% endblock %}
