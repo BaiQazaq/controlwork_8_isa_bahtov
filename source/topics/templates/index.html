@@ -13,7 +13,7 @@
   
     <a href="{% url 'topic_detail' topic.pk %}" class="text-decoration-none">
         <div class="wrapper d-flex justify-content-between mb-2" style="color: black; height: 40px; border-bottom: solid; cursor: pointer">
-            <p>{{ topic.description }}</p>
+            <p>{{ topic.title }}</p>
             <p>{{ topic.created_at }}</p>
             <p>{{ topic.author }}</p>
             <p>ответов {{ topic.comments.count }}</p>
@@ -27,39 +27,3 @@
 {% endblock%}
 {% block link %}
 {% endblock%}
-
-
-
-{% comment %} {% extends 'base.html' %}
-
-{% block title%}topics{% endblock %}
-
-{% block header %}
-    <h1>topics</h1>
-{% endblock %}
-
-{% block content %}
-<h1> This is main page</h1>
-{% include 'partial/search.html' %}
-    {% for topic in topics %}
-    <div class="wrapper">
-        <p>Description - {{ topic.description }}</p>
-        <p>Author - {{ topic.author }}</p>
-        <p>Comments - {{ topic.comments.count }}</p>
-        <a href="{% url 'topic_detail' topic.pk %}">View detail</a></p>
-        {% comment %} {% if user.is_authenticated %}
-            <a href="{% url 'task_edit' task.pk %}">Edit task</a>
-            <span>|</span>
-            <a href="{% url 'delete' task.pk %}">Delete task</a>
-        {% endif %} 
-        {% for comment in comments %}
-           <p>{{ comment }}</p>
-        {% endfor %}
-    </div>
-    {% endfor %}
-    {% if is_paginated %}
-        {% include 'partial/pagination.html' %}
-    {% endif%}
-{% endblock%}
-{% block link %}
-{% endblock%} {% endcomment %}

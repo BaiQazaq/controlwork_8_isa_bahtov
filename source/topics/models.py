@@ -29,6 +29,6 @@ class Comment(models.Model):
     is_deleted = models.BooleanField(verbose_name="Удалено", default=False, null=False)
     
     def __str__(self):
-        return self.text[:30]
+        return self.text[:150]
 
 

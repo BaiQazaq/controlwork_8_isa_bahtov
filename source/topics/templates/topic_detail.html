@@ -2,6 +2,51 @@
 {% load django_bootstrap5 %}
 
 {% block title %}
+  Post {{ topic.pk }}
+{% endblock%}
+
+{% block header %}
+  <h1>About the post {{ topic.pk }}</h1>
+{% endblock %}
+
+{% block content %}
+  <div class="d-flex justify-content-between">
+    <p>{{ topic.title }}</p>
+    <p>{{ topic.created_at }}</p>
+    <p>{{ topic.author }}</p>
+  </div>
+  <div class="text-center">
+    <p>{{ topic.description }}</p>
+  </div>
+  <div class='comment-list'>
+    {% for comment in comments %}
+    <div class='comment'>
+      <img src='{{ user.image.url }}' style="width: 180px">
+      <p>Commented by{{ comment.author }}</p> 
+      <div class="pre">{{ comment.text}}</div>
+    </div>
+    {% empty %}
+      <p>No comments yet.</p>
+    {% endfor %}
+  </div>
+  
+  {% comment %} <p>Users count {{ project.projects_user.count }}</p>
+  {% for user in project.projects_user.all %}
+    <p> {{ user.user }}</p>
+  {% endfor %} {% endcomment %}
+  <div>
+    {% include 'partial/comment.html'  with action_url="" form_method="post" %}
+    </div>
+{% endblock %}
+
+{% block link %}
+<p><a href="{% url 'delete_user_from_project' topic.pk %}">Delete user</a></p>
+{% endblock %}
+
+{% comment %} {% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+{% block title %}
   Topic {{ topic.pk }}
 {% endblock%}
 
@@ -10,6 +55,7 @@
 {% endblock %}
 
 {% block content %}
+  
   <p><b>Description:</b>  {{ topic.description }}</p>
   <p>Author - {{ topic.author }}</p>
   <div class='comment-list'>
@@ -28,12 +74,12 @@
   {% comment %} <p>Users count {{ project.projects_user.count }}</p>
   {% for user in project.projects_user.all %}
     <p> {{ user.user }}</p>
-  {% endfor %} {% endcomment %}
+  {% endfor %}
   <div>
     {% include 'partial/comment.html'  with action_url="" form_method="post" %}
     </div>
 {% endblock %}
 
 {% block link %}
-{% comment %} <p><a href="{% url 'delete_user_from_project' topic.pk %}">Delete user</a></p> {% endcomment %}
-{% endblock %}
+{% comment %} <p><a href="{% url 'delete_user_from_project' topic.pk %}">Delete user</a></p>
+{% endblock %} {% endcomment %}
