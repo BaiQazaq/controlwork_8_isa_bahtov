@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Пользователь{% endblock %}
+
+{% block menu %}
+
+    <li><a href="{% url 'change' user_obj.pk %}">Редактировать</a></li>
+
+    <li><a href="#">Смена пароля</a></li>
+
+    <li><a href="{% url 'topic_creation' user_obj.pk %}">Добавить публикацию</a></li>
+
+{% endblock %}
+
+{% block content %}
+
+    <h1>Личная страница пользователя {{ user_obj.get_full_name|default:user_obj.email }}</h1>
+
+    {% if user_obj.avatar %}
+
+        <img class="avatar" src="{{ user_obj.avatar.url }}" width="250" height="250" alt="user picture">
+
+    {% endif %}
+    <p>Имя пользователя: {{ user_obj.username }} </p>
+
+    <p>Имя: {{ user_obj.first_name }}</p>
+
+    <p>Фамилия: {{ user_obj.last_name }}</p>
+
+    <p>Почта: {{ user_obj.email }}</p>
+    
+    <p>Публикации {{user_obj.topics.count }}
+
+    <h2 class="text-center clear">Избранные публикации:</h2>
+
+    {% comment %} {% include 'index.html' %} {% endcomment %}
+
+{% endblock %}
