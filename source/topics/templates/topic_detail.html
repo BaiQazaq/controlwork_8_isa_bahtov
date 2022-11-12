@@ -2,11 +2,11 @@
 {% load django_bootstrap5 %}
 
 {% block title %}
-  Post {{ topic.pk }}
+  Topic {{ topic.pk }}
 {% endblock%}
 
 {% block header %}
-  <h1>About the post {{ topic.pk }}</h1>
+  <h1>About the topic {{ topic.pk }}</h1>
 {% endblock %}
 
 {% block content %}
@@ -33,5 +33,5 @@
 {% endblock %}
 
 {% block link %}
-<p><a href="{% url 'delete_user_from_project' topic.pk %}">Delete user</a></p>
+{% comment %} <p><a href="{% url 'delete_user_from_project' topic.pk %}">Delete user</a></p> {% endcomment %}
 {% endblock %}
